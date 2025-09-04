@@ -1,0 +1,32 @@
+# Dresses_Attribute_Sales
+
+This dataset contain Attributes of dresses and their recommendations according to their sales. Sales are monitor on the basis of alternate days.
+
+## Dataset Information
+
+### Associated Tasks
+Classification, Clustering
+
+### # Instances
+501
+
+## # Features
+13
+
+### Additional Information
+Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,	FabricType,	Decoration,	Pattern, Type,	Recommendation are Attributes in dataset.
+
+### Variable Information
+- **Style:** `Bohemia,brief,casual,cute,fashion,flare,novelty,OL,party,sexy,vintage,work`.
+- **Price:** `Low,Average,Medium,High,Very-High`
+- **Rating:** `1-5`
+- **Size:** `S,M,L,XL,Free`	
+- **Season:** `Autumn,winter,Spring,Summer`
+- **NeckLine:** `O-neck,backless,board-neck,Bowneck,halter,mandarin-collor,open,peterpan-collor,ruffled,scoop,slash-neck,square-collar,sweetheart,turndowncollar,V-neck.`
+- **SleeveLength:** `full,half,halfsleeves,butterfly,sleveless,short,threequarter,turndown,null`
+- **waiseline:** `dropped,empire,natural,princess,null`.	
+- **Material:** `wool,cotton,mix, etc`	
+- **FabricType:** `shafoon,dobby,popline,satin,knitted,jersey,flannel,corduroy, etc`
+- **Decoration:** `applique,beading,bow,button,cascading,crystal,draped,embroridary,feathers,flowers, etc`
+- **Pattern type:** `solid,animal,dot,leapard,etc`
+- **Recommendation:** `0,1`
