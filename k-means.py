@@ -132,6 +132,7 @@ def encode(df_processed, categorical_features):
 
     #return X
 
+    # Clustering only on Price and Rating
     X_2d = df_processed[['Price', 'Rating']].copy()
     return X_2d
 
@@ -190,7 +191,7 @@ print(df.head())
 print("\nDataset Information (dtypes, non-null counts):")
 df.info()
 
-# Step 1: Create a new DataFrame with only the relevant features
+# Create a new DataFrame with only the relevant features
 # We use the df_processed which has Price and Rating cleaned and numerical
 
 # Identify categorical columns (excluding ID, Recommendation, and already processed ones)
@@ -208,22 +209,22 @@ scaler = StandardScaler()
 data_scaled = scaling(scaler, X)
 
 # Clustering all in ranges
-for k in k_range:
-    print(f"Clustering #: {k}")
-    kmeans = clustering(k, data_scaled)
-    df_processed['Cluster'] = kmeans.labels_
-    v_clustering(k, df_processed, price_map, get_original_centroids(scaler, kmeans))
+# for k in k_range:
+#     print(f"Clustering #: {k}")
+#     kmeans = clustering(k, data_scaled)
+#     df_processed['Cluster'] = kmeans.labels_
+#     v_clustering(k, df_processed, price_map, get_original_centroids(scaler, kmeans))
 
 # Visualization of methods
-# v_sse(k_range, data_scaled)
+v_sse(k_range, data_scaled)
 # v_shilhouette(k_range, data_scaled)
 
 # Clustering with optimal k
-# kmeans = clustering(optimal_k, data_scaled)
+kmeans = clustering(optimal_k, data_scaled)
 
 # Add the cluster labels to our processed (but not scaled) DataFrame
-# df_processed['Cluster'] = kmeans.labels_
-# v_clustering(optimal_k, df_processed, price_map, get_original_centroids(scaler, kmeans))
+df_processed['Cluster'] = kmeans.labels_
+v_clustering(optimal_k, df_processed, price_map, get_original_centroids(scaler, kmeans))
 
-# # Create new datasheet with cluster label
-# create_new_datasheet(kmeans)
+# Create new datasheet with cluster label
+create_new_datasheet(kmeans)
