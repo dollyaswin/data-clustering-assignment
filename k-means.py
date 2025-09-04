@@ -95,11 +95,6 @@ def training(df_processed, price_map):
 
     return df_processed
 
-    # # 2.4 One-Hot Encode other categorical features
-    # # Identify categorical columns (excluding ID, Recommendation, and already processed ones)
-    # categorical_features = ['Style', 'Size', 'Season', 'NeckLine', 'SleeveLength', 'waiseline', 'Material',
-    #                         'FabricType', 'Decoration', 'Pattern Type']
-
 # --- Encoding the training data ---
 def encode(df_processed, categorical_features):
     # Use get_dummies for one-hot encoding
@@ -147,9 +142,13 @@ sns.set(style="whitegrid")
 import warnings
 warnings.filterwarnings('ignore')
 
-# k_range = range(2, 15)
-optimal_k = 7
+# Clustering starts at 2 groups
+# Number of samples (n) = 501
+# Square root of n = sqrt(501) ≈ 22.38
 k_range = range(2, 25)
+
+# The optimal k based on testing
+# optimal_k = 7
 
 # --- Load the data ---
 dataset_file_path = 'assets/Attribute DataSet.xlsx'
@@ -180,15 +179,23 @@ df_processed = training(df_copy, price_map)
 X = encode(df_processed, categorical_features)
 data_scaled = scaling(X)
 
-# Clustering
-kmeans = clustering(optimal_k, data_scaled)
+# Clustering all in ranges
+for k in k_range:
+    print(f"Clustering #: {k}")
+    kmeans = clustering(k, data_scaled)
+    df_processed['Cluster'] = kmeans.labels_
+    v_clustering(k, df_processed, price_map)
 
-# Visualization
+# Visualization of methods
 v_sse(k_range, data_scaled)
 v_shilhouette(k_range, data_scaled)
-# Add the cluster labels to our processed (but not scaled) DataFrame
-df_processed['Cluster'] = kmeans.labels_
-v_clustering(optimal_k, df_processed, price_map)
 
-# create new datasheet with cluster label
-create_new_datasheet(kmeans)
+# Clustering with optimal k
+# kmeans = clustering(optimal_k, data_scaled)
+
+# Add the cluster labels to our processed (but not scaled) DataFrame
+# df_processed['Cluster'] = kmeans.labels_
+# v_clustering(optimal_k, df_processed, price_map)
+
+# Create new datasheet with cluster label
+# create_new_datasheet(kmeans)
