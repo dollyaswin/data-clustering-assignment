@@ -31,5 +31,21 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 - **Pattern type:** `solid,animal,dot,leapard,etc`
 - **Recommendation:** `0,1`
 
+# Clustering
+
+## K-Means 
+
+### K = 2
+![K = 2](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k2.png?raw=true)
+
+### Elbow Method
+![Elbow Method for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-sse.png?raw=true)
+
+### Silhouette
+![Silhouette Scores for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-silhouette.png?raw=true)
+
+### Optimal K
+![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k.png?raw=true)
+
 # Source
 [Dresses_Attribute_Sales at UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/289/dresses+attribute+sales)
