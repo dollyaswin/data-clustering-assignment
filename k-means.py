@@ -148,11 +148,11 @@ warnings.filterwarnings('ignore')
 k_range = range(2, 25)
 
 # The optimal k based on testing
-# optimal_k = 7
+optimal_k = 7
 
 # --- Load the data ---
 dataset_file_path = 'assets/Attribute DataSet.xlsx'
-output_dataset_file_path = 'assets/new-dress-data-set.csv'
+output_dataset_file_path = 'assets/new-dress-data-set-cluster.csv'
 try:
     df = pd.read_excel(dataset_file_path)
     print("Dataset loaded successfully!")
@@ -180,22 +180,22 @@ X = encode(df_processed, categorical_features)
 data_scaled = scaling(X)
 
 # Clustering all in ranges
-for k in k_range:
-    print(f"Clustering #: {k}")
-    kmeans = clustering(k, data_scaled)
-    df_processed['Cluster'] = kmeans.labels_
-    v_clustering(k, df_processed, price_map)
+# for k in k_range:
+#     print(f"Clustering #: {k}")
+#     kmeans = clustering(k, data_scaled)
+#     df_processed['Cluster'] = kmeans.labels_
+#     v_clustering(k, df_processed, price_map)
 
 # Visualization of methods
-v_sse(k_range, data_scaled)
-v_shilhouette(k_range, data_scaled)
+# v_sse(k_range, data_scaled)
+# v_shilhouette(k_range, data_scaled)
 
 # Clustering with optimal k
-# kmeans = clustering(optimal_k, data_scaled)
+kmeans = clustering(optimal_k, data_scaled)
 
 # Add the cluster labels to our processed (but not scaled) DataFrame
-# df_processed['Cluster'] = kmeans.labels_
-# v_clustering(optimal_k, df_processed, price_map)
+df_processed['Cluster'] = kmeans.labels_
+v_clustering(optimal_k, df_processed, price_map)
 
 # Create new datasheet with cluster label
-# create_new_datasheet(kmeans)
+create_new_datasheet(kmeans)
