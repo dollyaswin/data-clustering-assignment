@@ -109,7 +109,11 @@ def encode(df_processed, categorical_features):
     print("\nColumns of the final training data:")
     print(X.columns)
 
-    return X
+    #return X
+
+    X_2d = df_processed[['Price', 'Rating']].copy()
+    return X_2d
+
 
 # --- Scaling ---
 def scaling(data):
@@ -148,7 +152,7 @@ warnings.filterwarnings('ignore')
 k_range = range(2, 25)
 
 # The optimal k based on testing
-optimal_k = 7
+optimal_k = 5
 
 # --- Load the data ---
 dataset_file_path = 'assets/Attribute DataSet.xlsx'
@@ -161,22 +165,34 @@ except FileNotFoundError:
     exit()
 
 # --- Initial Inspection ---
-print("\nFirst 5 rows of the dataset:")
-print(df.head())
+# print("\nFirst 5 rows of the dataset:")
+# print(df.head())
 
-print("\nDataset Information (dtypes, non-null counts):")
-df.info()
+# print("\nDataset Information (dtypes, non-null counts):")
+# df.info()
+
+# Step 1: Create a new DataFrame with only the relevant features
+# We use the df_processed which has Price and Rating cleaned and numerical
 
 # Identify categorical columns (excluding ID, Recommendation, and already processed ones)
 categorical_features = ['Style', 'Size', 'Season', 'NeckLine', 'SleeveLength', 'waiseline', 'Material',
                         'FabricType', 'Decoration', 'Pattern Type']
 # Define the order of the categories
-price_map = {'Low': 1, 'low': 1, 'Average': 2, 'Medium': 3, 'High': 4, 'very-high': 5}
+price_map = {'Low': 1, 'low': 1, 'Average': 2, 'average': 2, 'Medium': 3, 'medium': 3, 'High': 4, 'high': 4, 'very-high': 5}
 
 df_copy = df.copy()
 # Training, encoding and scaling the data
 df_processed = training(df_copy, price_map)
 X = encode(df_processed, categorical_features)
+
+# X_2d = df_processed[['Price', 'Rating']].copy()
+#
+# print("\nShape of our new 2D dataset:", X_2d.shape)
+# print("First 5 rows of the 2D dataset:")
+# print(X_2d.head())
+
+# X = encode(X_2d, categorical_features)
+
 data_scaled = scaling(X)
 
 # Clustering all in ranges
@@ -190,12 +206,12 @@ data_scaled = scaling(X)
 # v_sse(k_range, data_scaled)
 # v_shilhouette(k_range, data_scaled)
 
-# Clustering with optimal k
+# # Clustering with optimal k
 kmeans = clustering(optimal_k, data_scaled)
-
-# Add the cluster labels to our processed (but not scaled) DataFrame
+#
+# # Add the cluster labels to our processed (but not scaled) DataFrame
 df_processed['Cluster'] = kmeans.labels_
 v_clustering(optimal_k, df_processed, price_map)
-
-# Create new datasheet with cluster label
+#
+# # Create new datasheet with cluster label
 create_new_datasheet(kmeans)

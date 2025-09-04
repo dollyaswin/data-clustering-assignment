@@ -7,10 +7,10 @@ This dataset contain Attributes of dresses and their recommendations according t
 ### Associated Tasks
 Classification, Clustering
 
-### # Instances
+### #Instances
 501
 
-## # Features
+### #Features
 13
 
 ### Additional Information
@@ -30,3 +30,6 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 - **Decoration:** `applique,beading,bow,button,cascading,crystal,draped,embroridary,feathers,flowers, etc`
 - **Pattern type:** `solid,animal,dot,leapard,etc`
 - **Recommendation:** `0,1`
+
+# Source
+[Dresses_Attribute_Sales at UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/289/dresses+attribute+sales)
