@@ -9,8 +9,18 @@ from sklearn.pipeline import Pipeline
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
+# --- get original centroids ---
+def get_original_centroids(scaler, kmeans):
+    # Get the centroid coordinates from the model (they are in the SCALED space)
+    scaled_centroids = kmeans.cluster_centers_
+    print("Scaled Centroid Coordinates:\n", scaled_centroids)
+    original_centroids = scaler.inverse_transform(scaled_centroids)
+    print("\nOriginal Scale Centroid Coordinates (Price, Rating):\n", original_centroids)
+
+    return original_centroids
+
 # --- data visualiation from clustering result ---
-def v_clustering(n_clusters, df_result, price_map):
+def v_clustering(n_clusters, df_result, price_map, original_centroids):
     plt.figure(figsize=(14, 9))
     sns.scatterplot(
         data=df_result,
@@ -22,7 +32,18 @@ def v_clustering(n_clusters, df_result, price_map):
         alpha=0.8        # Transparency of the points
     )
 
-    plt.title(f'Dress Clusters (K={n_clusters}) based on Price vs. Rating', fontsize=18)
+    # Plot the centroids on top of the scatter plot
+    plt.scatter(
+        x=original_centroids[:, 1],  # The second column is 'Rating'
+        y=original_centroids[:, 0],  # The first column is 'Price'
+        marker='*',  # Use a distinct marker (e.g., 'X')
+        s=300,  # Make the marker size large
+        c='red',  # Use a standout color like red
+        edgecolor='black',  # Add a black border for visibility
+        label='Centroids'  # Add a label for the legend
+    )
+
+    plt.title(f'Dress Clusters (K={n_clusters}) with Centroids based on Price vs. Rating', fontsize=18)
     plt.xlabel('Customer Rating', fontsize=14)
     plt.ylabel('Price Level (Encoded)', fontsize=14)
 
@@ -114,10 +135,8 @@ def encode(df_processed, categorical_features):
     X_2d = df_processed[['Price', 'Rating']].copy()
     return X_2d
 
-
 # --- Scaling ---
-def scaling(data):
-    scaler = StandardScaler()
+def scaling(scaller, data):
     X_scaled = scaler.fit_transform(data)
 
     print("\nFeature scaling complete.")
@@ -165,18 +184,18 @@ except FileNotFoundError:
     exit()
 
 # --- Initial Inspection ---
-# print("\nFirst 5 rows of the dataset:")
-# print(df.head())
+print("\nFirst 5 rows of the dataset:")
+print(df.head())
 
-# print("\nDataset Information (dtypes, non-null counts):")
-# df.info()
+print("\nDataset Information (dtypes, non-null counts):")
+df.info()
 
 # Step 1: Create a new DataFrame with only the relevant features
 # We use the df_processed which has Price and Rating cleaned and numerical
 
 # Identify categorical columns (excluding ID, Recommendation, and already processed ones)
-categorical_features = ['Style', 'Size', 'Season', 'NeckLine', 'SleeveLength', 'waiseline', 'Material',
-                        'FabricType', 'Decoration', 'Pattern Type']
+categorical_features = ['Style', 'Size', 'Season', 'NeckLine', 'SleeveLength', 'waiseline',
+                        'Material', 'FabricType', 'Decoration', 'Pattern Type']
 # Define the order of the categories
 price_map = {'Low': 1, 'low': 1, 'Average': 2, 'average': 2, 'Medium': 3, 'medium': 3, 'High': 4, 'high': 4, 'very-high': 5}
 
@@ -185,33 +204,26 @@ df_copy = df.copy()
 df_processed = training(df_copy, price_map)
 X = encode(df_processed, categorical_features)
 
-# X_2d = df_processed[['Price', 'Rating']].copy()
-#
-# print("\nShape of our new 2D dataset:", X_2d.shape)
-# print("First 5 rows of the 2D dataset:")
-# print(X_2d.head())
-
-# X = encode(X_2d, categorical_features)
-
-data_scaled = scaling(X)
+scaler = StandardScaler()
+data_scaled = scaling(scaler, X)
 
 # Clustering all in ranges
-# for k in k_range:
-#     print(f"Clustering #: {k}")
-#     kmeans = clustering(k, data_scaled)
-#     df_processed['Cluster'] = kmeans.labels_
-#     v_clustering(k, df_processed, price_map)
+for k in k_range:
+    print(f"Clustering #: {k}")
+    kmeans = clustering(k, data_scaled)
+    df_processed['Cluster'] = kmeans.labels_
+    v_clustering(k, df_processed, price_map, get_original_centroids(scaler, kmeans))
 
 # Visualization of methods
 # v_sse(k_range, data_scaled)
 # v_shilhouette(k_range, data_scaled)
 
-# # Clustering with optimal k
-kmeans = clustering(optimal_k, data_scaled)
-#
-# # Add the cluster labels to our processed (but not scaled) DataFrame
-df_processed['Cluster'] = kmeans.labels_
-v_clustering(optimal_k, df_processed, price_map)
-#
+# Clustering with optimal k
+# kmeans = clustering(optimal_k, data_scaled)
+
+# Add the cluster labels to our processed (but not scaled) DataFrame
+# df_processed['Cluster'] = kmeans.labels_
+# v_clustering(optimal_k, df_processed, price_map, get_original_centroids(scaler, kmeans))
+
 # # Create new datasheet with cluster label
-create_new_datasheet(kmeans)
+# create_new_datasheet(kmeans)
