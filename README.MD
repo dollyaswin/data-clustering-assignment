@@ -31,6 +31,9 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 - **Pattern type:** `solid,animal,dot,leapard,etc`
 - **Recommendation:** `0,1`
 
+### Datasheet Preview 
+![Datasheet Preview](https://github.com/dollyaswin/data-clustering-assignment/blob/main/assets/dress-datasheet-preview.png?raw=true)
+
 ### Source
 [Dresses_Attribute_Sales at UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/289/dresses+attribute+sales)
 
