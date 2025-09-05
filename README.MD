@@ -31,6 +31,9 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 - **Pattern type:** `solid,animal,dot,leapard,etc`
 - **Recommendation:** `0,1`
 
+### Source
+[Dresses_Attribute_Sales at UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/289/dresses+attribute+sales)
+
 # Clustering
 
 ## K-Means 
@@ -38,14 +41,29 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 ### K = 2
 ![K = 2](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k2.png?raw=true)
 
+### K = 3
+![K = 3](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k3.png?raw=true)
+
+### K = 4
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k4.png?raw=true)
+
+### K = 5
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k5.png?raw=true)
+
 ### Elbow Method
 ![Elbow Method for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-sse.png?raw=true)
 
-### Silhouette
-![Silhouette Scores for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-silhouette.png?raw=true)
-
-### Optimal K
+### Clustering Result Using the Optimal K
 ![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k.png?raw=true)
 
-# Source
-[Dresses_Attribute_Sales at UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/289/dresses+attribute+sales)
+## Agglomerative
+
+### Create Endogram
+[Creating Endogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/endogram.png?raw=true)
+
+### Create Silhoutte Scoring
+[Creating Endogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-silhouette.png?raw=true)
+
+### Clustering Result Using the Optimal K
+![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-k.png?raw=true)
+
