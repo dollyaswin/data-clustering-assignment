@@ -126,7 +126,7 @@ def clustering(n_clusters, data_scale):
 
 # --- Write New Datasheet With Cluster Label ---
 def create_new_datasheet(cluster):
-    df['Agglomerative_Cluster'] = cluster
+    df['Cluster'] = cluster
 
     # # Save the final dataframe to a new CSV file
     df.to_csv(output_dataset_file_path, index=False, sep=';')

@@ -1,4 +1,4 @@
-Dress_ID;Style;Price;Rating;Size;Season;NeckLine;SleeveLength;waiseline;Material;FabricType;Decoration;Pattern Type;Recommendation;Agglomerative_Cluster
+Dress_ID;Style;Price;Rating;Size;Season;NeckLine;SleeveLength;waiseline;Material;FabricType;Decoration;Pattern Type;Recommendation;Cluster
 1006032852;Sexy;Low;4.6;M;Summer;o-neck;sleevless;empire;;chiffon;ruffles;animal;1;1
 1212192089;Casual;Low;0.0;L;Summer;o-neck;Petal;natural;microfiber;;ruffles;animal;0;2
 1190380701;vintage;High;0.0;L;Automn;o-neck;full;natural;polyster;;;print;0;8
