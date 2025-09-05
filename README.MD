@@ -56,6 +56,8 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 ### Clustering Result Using the Optimal K
 ![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k.png?raw=true)
 
+### New Datasheet with clustering data 
+![New Datasheet Update](https://github.com/dollyaswin/data-clustering-assignment/blob/main/assets/dress-datasheet-k-means-clustering.png?raw=true)
 
 ## Agglomerative
 
