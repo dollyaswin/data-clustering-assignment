@@ -60,10 +60,10 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 ## Agglomerative
 
 ### Create Dendogram
-[Creating Endogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/dendogram.png?raw=true)
+![Creating Endogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/dendogram.png?raw=true)
 
 ### Create Silhoutte Scoring
-[Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-silhouette.png?raw=true)
+![Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-silhouette.png?raw=true)
 
 ### Clustering Result Using the Optimal K
 ![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-k.png?raw=true)
