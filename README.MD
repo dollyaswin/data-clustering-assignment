@@ -53,6 +53,9 @@ Classification, Clustering
 ### Elbow Method
 ![Elbow Method for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-sse.png?raw=true)
 
+### Silhouette Scoring
+![Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-silhouette.png?raw=true)
+
 ### Clusters Using Optimal K
 ![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k.png?raw=true)
 
