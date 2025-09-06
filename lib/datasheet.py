@@ -5,8 +5,9 @@ class DataSheet:
     def __init__(self, file_path, scaler):
         self.df = None
         self.scaler = scaler
-        self.file_path   = file_path
-        self.data_scaled = None
+        self.file_path = file_path
+        self.data_scaled  = None
+        self.df_processed = None
 
     def get_df(self):
         return self.df
@@ -16,6 +17,9 @@ class DataSheet:
 
     def get_data_scaled(self):
         return self.data_scaled
+
+    def get_df_processed(self):
+        return self.df_processed
 
     # --- Load datasheet ---
     def load(self):
@@ -36,17 +40,19 @@ class DataSheet:
 
     # --- Training data ---
     def training(self):
+        self.df_processed = self.df.copy()
+
         # Replace comma with dot and convert to numeric
-        self.df['Price'] = self.df['Price'].map(self.encoding_price())
+        self.df_processed['Price'] = self.df_processed['Price'].map(self.encoding_price())
 
         # Replace the string 'null' with NumPy's NaN (Not a Number)
-        self.df.replace('null', np.nan, inplace=True)
+        self.df_processed.replace('null', np.nan, inplace=True)
 
         # Fill missing values with the mode (most frequent value) of each column
-        for column in self.df.columns:
-            if self.df[column].isnull().any():
-                mode_value = self.df[column].mode()[0]
-                self.df[column].fillna(mode_value, inplace=True)
+        for column in self.df_processed.columns:
+            if self.df_processed[column].isnull().any():
+                mode_value = self.df_processed[column].mode()[0]
+                self.df_processed[column].fillna(mode_value, inplace=True)
                 print(f"Filled missing values in '{column}' with mode: '{mode_value}'")
 
         self.scaling()
@@ -54,7 +60,7 @@ class DataSheet:
 
     # --- Scaling ---
     def scaling(self):
-        X_2d = self.df[['Price', 'Rating']].copy()
+        X_2d = self.df_processed[['Price', 'Rating']].copy()
         self.data_scaled = self.scaler.fit_transform(X_2d)
 
         print("\nFeature scaling complete.")
@@ -75,4 +81,4 @@ class DataSheet:
 
         print(f"\nSuccessfully saved the new dataset with cluster labels to '{output_dataset_file_path}'")
         print("\nFirst 5 rows of the new dataset:")
-        print(self.df.head())
+        print(self.df_processed.head())
