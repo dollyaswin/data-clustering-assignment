@@ -67,8 +67,8 @@ class DataSheet:
         return pricing_map
 
     # --- Write new datasheet with cluster label ---
-    def save(self, cluster, output_dataset_file_path):
-        self.df['Cluster'] = cluster.labels_
+    def save_clusters(self, clusters, output_dataset_file_path):
+        self.df['Cluster'] = clusters
 
         # Save the final dataframe to a new CSV file
         self.df.to_csv(output_dataset_file_path, index=False, sep=';')
