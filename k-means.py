@@ -120,6 +120,12 @@ def scaling(scaller, data):
     print("\nFeature scaling complete.")
     return X_scaled
 
+# --- Encoding Price to define the order of the categories ---
+def price_encoding():
+    pricing_map = {'Low': 1, 'low': 1, 'Average': 2, 'average': 2, 'Medium': 3, 'medium': 3, 'High': 4, 'high': 4,
+                   'very-high': 5}
+    return pricing_map
+
 # --- Create Clustering ---
 def clustering(n_clusters, data_scale):
     # Run K-Means with the optimal number of clusters
@@ -179,8 +185,7 @@ df_copy = df.copy()
 scaler  = StandardScaler()
 
 # Training and scaling the data
-# Define the order of the categories
-pricing_map  = {'Low': 1, 'low': 1, 'Average': 2, 'average': 2, 'Medium': 3, 'medium': 3, 'High': 4, 'high': 4, 'very-high': 5}
+pricing_map  = price_encoding()
 df_processed = training(df_copy, pricing_map)
 data_scaled  = scaling(scaler, df_processed)
 
@@ -197,7 +202,7 @@ v_sse(k_range, data_scaled)
 # Visualization of Silhouette Scoring
 v_silhouette(k_range, data_scaled)
 
-# Clustering with optimal k
+# Run clustering with optimal k
 clustering_result = clustering(optimal_k, data_scaled)
 
 # Add the cluster labels to our processed (but not scaled) DataFrame
