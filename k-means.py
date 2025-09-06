@@ -166,7 +166,7 @@ warnings.filterwarnings('ignore')
 k_range = range(2, 25)
 
 # The optimal k based on testing
-optimal_k = 5
+optimal_k = 9
 
 # New Datasheet with clustering result
 output_dataset_file_path = 'assets/dress-datasheet-k-means-clustering.csv'
@@ -191,9 +191,10 @@ data_scaled  = scaling(scaler, df_processed)
 #     df_processed['Cluster'] = kmeans.labels_
 #     v_clustering(k, df_processed, pricing_map, get_original_centroids(scaler, kmeans))
 
-# Visualization of methods
+# Visualization of Elbow methods
 v_sse(k_range, data_scaled)
 
+# Visualization of Silhouette Scoring
 v_silhouette(k_range, data_scaled)
 
 # Clustering with optimal k

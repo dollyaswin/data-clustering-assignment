@@ -50,23 +50,43 @@ Classification, Clustering
 ### K = 5
 ![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k5.png?raw=true)
 
+### K = 6
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k6.png?raw=true)
+
+### K = 7
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k7.png?raw=true)
+
+### K = 8
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k8.png?raw=true)
+
+### K = 9
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k9.png?raw=true)
+
+### K = 10
+![K = 4](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k10.png?raw=true)
+
 ### Elbow Method
 ![Elbow Method for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-sse.png?raw=true)
 
 ### Silhouette Scoring
 ![Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-silhouette.png?raw=true)
 
-### Clusters Using Optimal K
-![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k.png?raw=true)
+### Clusters Using Optimal K = 9
+![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k9.png?raw=true)
 
 #### Clusters
-| **No** | **Price**        | **Rating** |
-|--------|------------------|------------|
-|   1.   | Average - Medium |    `3 - 5`   |
-|   2.   | Low              |    `4 - 5`   |
-|   3.   | Low - Medium     |    `0 - 1`   |
-|   4.   | High - Very High |    `4 - 5`   |
-|   5.   | High - Very High |      `0`     |
+| **No** | **Price** | **Rating** |
+|--------|-----------|------------|
+| 1.     | Medium    | `4.2 - 5`  |
+| 2.     | Low       | `4 - 5`    |
+| 3.     | Average   | `0 - 2`    |
+| 4.     | Average   | `3 - 5`    |
+| 5.     | Very High | `4.1 - 5`  |
+| 6.     | Very High | `0`        |
+| 7.     | Low       | `0 - 1`    |
+| 8.     | High      | `4.3 - 5`  |
+| 9.     | High      | `0`        |
+
 
 ### New Datasheet Preview With Cluster 
 ![New Datasheet Update](https://github.com/dollyaswin/data-clustering-assignment/blob/main/assets/dress-datasheet-k-means-clustering.png?raw=true)
