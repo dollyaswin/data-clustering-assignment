@@ -1,16 +1,3 @@
-# Import necessary libraries
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Scipy for dendrogram
-from scipy.cluster.hierarchy import dendrogram, linkage
-
-# Sklearn for clustering and scaling
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import AgglomerativeClustering
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
