@@ -73,8 +73,8 @@ def v_silhouette(k_range, data_scale):
     plt.grid(True)
     plt.show()
 
-# --- Create Dendogram Visualization ---
-def v_dendogram(data_scale, method='ward'):
+# --- Create Dendrogram Visualization ---
+def v_dendrogram(data_scale, method='ward'):
     linked = linkage(data_scale, method=method)
     plt.figure(figsize=(15, 8))
     dendrogram(
@@ -182,8 +182,8 @@ pricing_map  = {'Low': 1, 'low': 1, 'Average': 2, 'average': 2, 'Medium': 3, 'me
 df_processed = training(df_copy, pricing_map)
 data_scaled  = scaling(scaler, df_processed)
 
-# Create visualization of dendogram
-# v_dendogram(data_scaled)
+# Create visualization of dendrogram
+# v_dendrogram(data_scaled)
 
 # Visualization of methods
 # v_silhouette(k_range, data_scaled)
