@@ -13,11 +13,11 @@ from sklearn.metrics import silhouette_score
 from lib.datasheet import DataSheet
 
 # --- Create Clustering ---
-def clustering(n_clusters, data_scale):
+def clustering(n_clusters, data_scaled):
     # Initialize the Agglomerative Clustering model
     cluster = AgglomerativeClustering(n_clusters, metric='euclidean', linkage='ward')
     # Fit the model and get the cluster labels
-    clustering_result = cluster.fit_predict(data_scale)
+    clustering_result = cluster.fit_predict(data_scaled)
 
     return clustering_result
 
@@ -45,14 +45,14 @@ def v_clustering(n_clusters, df, clustering_result):
     plt.show()
 
 # --- Silhouette Scoring Method ---
-def v_silhouette(k_range, data_scale):
+def v_silhouette(k_range, data_scaled):
     silhouette_scores = []
 
     for k in k_range:
-        result = clustering(k, data_scale)
+        result = clustering(k, data_scaled)
 
         # Count silhouette score
-        score = silhouette_score(data_scale, result)
+        score = silhouette_score(data_scaled, result)
         silhouette_scores.append(score)
         print(f"For K={k}, THe Silhouette Score: {score:.4f}")
 
@@ -67,8 +67,8 @@ def v_silhouette(k_range, data_scale):
     plt.show()
 
 # --- Create Dendrogram Visualization ---
-def v_dendrogram(data_scale, method='ward'):
-    linked = linkage(data_scale, method=method)
+def v_dendrogram(data_scaled, method='ward'):
+    linked = linkage(data_scaled, method=method)
     plt.figure(figsize=(15, 8))
     dendrogram(
         linked,
@@ -116,7 +116,7 @@ v_silhouette(k_range, ds.get_data_scaled())
 clustering_result = clustering(optimal_k, ds.get_data_scaled())
 
 # Add the cluster labels to our processed (but not scaled) DataFrame
-v_clustering(optimal_k, ds.get_df(), clustering_result)
+v_clustering(optimal_k, ds.get_df_processed(), clustering_result)
 
 # Create new datasheet with cluster label
 clusters = clustering_result
