@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 
 
 # --- get original centroids ---
@@ -72,6 +73,28 @@ def v_sse(k_range, data_scale):
     plt.grid(True)
     plt.show()
 
+# --- Silhouette Scoring Method ---
+def v_silhouette(k_range, data_scale):
+    silhouette_scores = []
+
+    for k in k_range:
+        clustering_result = clustering(k, data_scale)
+
+        # Count silhouette score
+        score = silhouette_score(data_scale, clustering_result.labels_)
+        silhouette_scores.append(score)
+        print(f"For K={k}, THe Silhouette Score: {score:.4f}")
+
+    # Plot Silhouette Scores
+    plt.figure(figsize=(10, 6))
+    plt.plot(k_range, silhouette_scores, marker='o', linestyle='--')
+    plt.title('Silhouette Scores for Optimal K', fontsize=16)
+    plt.xlabel('Number of Clusters (K)', fontsize=12)
+    plt.ylabel('Silhouette Score', fontsize=12)
+    plt.xticks(k_range)
+    plt.grid(True)
+    plt.show()
+
 # --- Training data ---
 def training(df_processed, price_map):
     # Replace comma with dot and convert to numeric
@@ -99,23 +122,14 @@ def scaling(scaller, data):
 
 # --- Create Clustering ---
 def clustering(n_clusters, data_scale):
-    # Initialize the Agglomerative Clustering model
-    cluster = AgglomerativeClustering(n_clusters, metric='euclidean', linkage='ward')
-    # Fit the model and get the cluster labels
-    clustering_result = cluster.fit_predict(data_scale)
-
-    return clustering_result
-
-# --- Create Clustering ---
-def clustering(n_clusters, data_scale):
     # Run K-Means with the optimal number of clusters
     clustering_result = KMeans(n_clusters=n_clusters, random_state=42, n_init='auto')
     clustering_result.fit(data_scale)
     return clustering_result
 
 # --- Write New Datasheet With Cluster Label ---
-def create_new_datasheet(kmeans):
-    df['Cluster'] = kmeans.labels_
+def create_new_datasheet(cluster):
+    df['Cluster'] = cluster.labels_
 
     # Save the final dataframe to a new CSV file
     df.to_csv(output_dataset_file_path, index=False, sep=';')
@@ -180,12 +194,14 @@ data_scaled  = scaling(scaler, df_processed)
 # Visualization of methods
 v_sse(k_range, data_scaled)
 
+v_silhouette(k_range, data_scaled)
+
 # Clustering with optimal k
-kmeans = clustering(optimal_k, data_scaled)
+clustering_result = clustering(optimal_k, data_scaled)
 
 # Add the cluster labels to our processed (but not scaled) DataFrame
-df_processed['Cluster'] = kmeans.labels_
-v_clustering(optimal_k, df_processed, pricing_map, get_original_centroids(scaler, kmeans))
+df_processed['Cluster'] = clustering_result.labels_
+v_clustering(optimal_k, df_processed, pricing_map, get_original_centroids(scaler, clustering_result))
 
 # Create new datasheet with cluster label
-create_new_datasheet(kmeans)
+create_new_datasheet(clustering_result)
