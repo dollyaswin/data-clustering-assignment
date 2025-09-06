@@ -13,9 +13,6 @@ Classification, Clustering
 ### #Features
 13
 
-### Additional Information
-Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,	FabricType,	Decoration,	Pattern, Type,	Recommendation are Attributes in dataset.
-
 ### Variable Information
 - **Style:** `Bohemia,brief,casual,cute,fashion,flare,novelty,OL,party,sexy,vintage,work`.
 - **Price:** `Low,Average,Medium,High,Very-High`
@@ -39,7 +36,7 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 
 # Clustering
 
-## K-Means 
+## K-Means (Price vs Rating) 
 
 ### K = 2
 ![K = 2](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k2.png?raw=true)
@@ -56,22 +53,45 @@ Style,	Price,	Rating,	Size,	Season,	NeckLine,	SleeveLength,	waiseline,	Material,
 ### Elbow Method
 ![Elbow Method for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-sse.png?raw=true)
 
-### Clustering Result Using the Optimal K
+### Clusters Using Optimal K
 ![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-k.png?raw=true)
 
-### New Datasheet with clustering data 
+#### Clusters
+| **No** | **Price**        | **Rating** |
+|--------|------------------|------------|
+|   1.   | Average - Medium |    `3 - 5`   |
+|   2.   | Low              |    `4 - 5`   |
+|   3.   | Low - Medium     |    `0 - 1`   |
+|   4.   | High - Very High |    `4 - 5`   |
+|   5.   | High - Very High |      `0`     |
+
+### New Datasheet Preview With Cluster 
 ![New Datasheet Update](https://github.com/dollyaswin/data-clustering-assignment/blob/main/assets/dress-datasheet-k-means-clustering.png?raw=true)
 
-## Agglomerative
+## Agglomerative (Price vs Rating)
 
-### Create Dendogram
-![Creating Endogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/dendogram.png?raw=true)
+### Dendrogram
+![Creating Dendrogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/dendogram.png?raw=true)
 
-### Create Silhoutte Scoring
+### Silhouette Scoring
 ![Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-silhouette.png?raw=true)
 
 ### Clustering Result Using the Optimal K
 ![Clustering using the Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-k.png?raw=true)
 
-### New Datasheet with clustering data 
+#### Clusters
+| **No** | **Price**        | **Rating** |
+|--------|------------------|------------|
+|   1.   | Average          |   `3 - 5`  |
+|   2.   | Low              |   `4 - 5`  |
+|   3.   | Low              |   `0 - 1`  |
+|   4.   | High - Very High |  `4.3 - 5` |
+|   5.   | Very High        |  `4.1 - 5` |
+|   6.   | Average          |     `0`    |
+|   7.   | Medium           |  `4.2 - 5` |
+|   8.   | Medium           |     `0`    |
+|   9.   | High             |     `0`    |
+|   10.  | High - Very High |     `0`    |
+
+### New Datasheet Preview With Cluster 
 ![New Datasheet Update](https://github.com/dollyaswin/data-clustering-assignment/blob/main/assets/dress-datasheet-agglomerative-clustering.png?raw=true)
