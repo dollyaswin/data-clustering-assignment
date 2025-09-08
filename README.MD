@@ -68,7 +68,7 @@ Classification, Clustering
 ### Elbow Method
 ![Elbow Method for Optimal K](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-sse.png?raw=true)
 
-### Silhouette Scoring
+### Silhouette Scoring 0.8775, K=9
 ![Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/k-means/plot-silhouette.png?raw=true)
 
 ### Clusters Using Optimal K = 9
@@ -96,7 +96,7 @@ Classification, Clustering
 ### Dendrogram
 ![Creating Dendrogram](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/dendogram.png?raw=true)
 
-### Silhouette Scoring
+### Silhouette Scoring 0.8963, K=10
 ![Creating Silhouette Scoring](https://github.com/dollyaswin/data-clustering-assignment/blob/main/visualizations/agglomerative/plot-silhouette.png?raw=true)
 
 ### Clustering Result Using the Optimal K
